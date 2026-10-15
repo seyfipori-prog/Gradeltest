@@ -33,116 +33,116 @@ jobs:
         run: |
           mkdir -p GradleTest/app/src/main/java/com/example/gradletest
           cat > GradleTest/settings.gradle << 'EOF'
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
 
-rootProject.name = "GradleTest"
-include ':app'
-EOF
+          rootProject.name = "GradleTest"
+          include ':app'
+          EOF
           cat > GradleTest/build.gradle << 'EOF'
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
-    }
-}
+          buildscript {
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+              dependencies {
+                  classpath 'com.android.tools.build:gradle:4.0.1'
+              }
+          }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+          allprojects {
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-EOF
+          task clean(type: Delete) {
+              delete rootProject.buildDir
+          }
+          EOF
           cat > GradleTest/app/build.gradle << 'EOF'
-apply plugin: 'com.android.application'
+          apply plugin: 'com.android.application'
 
-android {
-    compileSdkVersion 30
+          android {
+              compileSdkVersion 30
 
-    defaultConfig {
-        applicationId "com.example.gradletest"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-    }
+              defaultConfig {
+                  applicationId "com.example.gradletest"
+                  minSdkVersion 21
+                  targetSdkVersion 30
+                  versionCode 1
+                  versionName "1.0"
+              }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+              compileOptions {
+                  sourceCompatibility JavaVersion.VERSION_1_8
+                  targetCompatibility JavaVersion.VERSION_1_8
+              }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
-}
+              buildTypes {
+                  release {
+                      minifyEnabled false
+                  }
+              }
+          }
 
-dependencies {
-}
-EOF
+          dependencies {
+          }
+          EOF
           cat > GradleTest/app/src/main/AndroidManifest.xml << 'EOF'
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gradletest">
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+              package="com.example.gradletest">
 
-    <application
-        android:label="GradleTest"
-        android:theme="@android:style/Theme.Black.NoTitleBar">
+              <application
+                  android:label="GradleTest"
+                  android:theme="@android:style/Theme.Black.NoTitleBar">
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+                  <activity
+                      android:name=".MainActivity"
+                      android:exported="true">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity>
 
-    </application>
+              </application>
 
-</manifest>
-EOF
+          </manifest>
+          EOF
           cat > GradleTest/app/src/main/java/com/example/gradletest/MainActivity.java << 'EOF'
-package com.example.gradletest;
+          package com.example.gradletest;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.widget.TextView;
+          import android.app.Activity;
+          import android.graphics.Color;
+          import android.os.Bundle;
+          import android.view.Gravity;
+          import android.widget.TextView;
 
-public class MainActivity extends Activity {
+          public class MainActivity extends Activity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+              @Override
+              protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
 
-        TextView textView = new TextView(this);
-        textView.setText("Gradle Works!");
-        textView.setTextColor(Color.WHITE);
-        textView.setTextSize(24);
-        textView.setGravity(Gravity.CENTER);
-        textView.setBackgroundColor(Color.BLACK);
+                  TextView textView = new TextView(this);
+                  textView.setText("Gradle Works!");
+                  textView.setTextColor(Color.WHITE);
+                  textView.setTextSize(24);
+                  textView.setGravity(Gravity.CENTER);
+                  textView.setBackgroundColor(Color.BLACK);
 
-        setContentView(textView);
-    }
-}
-EOF
+                  setContentView(textView);
+              }
+          }
+          EOF
 
       - name: Build APK
         run: |
